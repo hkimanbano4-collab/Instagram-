@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soyfa Insta Video Downloader</title>
+    <!-- Google Fonts for Premium Look -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Animated Gradient Background */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            padding: 20px;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* 3D Glassmorphism Card with Floating Animation */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            padding: 40px 30px;
+            width: 100%;
+            max-width: 420px;
+            text-align: center;
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+            animation: floatCard 4s ease-in-out infinite;
+        }
+
+        @keyframes floatCard {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        h2 {
+            color: #ffffff;
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            letter-spacing: 1px;
+        }
+
+        p {
+            color: #f0f0f0;
+            font-size: 14px;
+            margin-bottom: 25px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+
+        /* 3D Input Field */
+        input {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 12px;
+            outline: none;
+            font-size: 14px;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: inset 0 3px 6px rgba(0,0,0,0.1);
+            transition: 0.3s;
+        }
+
+        input:focus {
+            background: #ffffff;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.5), inset 0 2px 4px rgba(0,0,0,0.1);
+            transform: scale(1.02);
+        }
+
+        /* 3D Animated Button */
+        .btn-3d {
+            background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            border-radius: 12px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            box-shadow: 0 8px 0 #8b105d, 0 15px 20px rgba(0,0,0,0.3);
+            transition: all 0.2s ease;
+        }
+
+        .btn-3d:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 0 #8b105d, 0 15px 20px rgba(0,0,0,0.4);
+        }
+
+        .btn-3d:active {
+            transform: translateY(8px);
+            box-shadow: 0 0px 0 #8b105d, 0 5px 10px rgba(0,0,0,0.3);
+        }
+
+        /* Animated Loading Spinner */
+        .loader {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid #ffffff;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Result Area Animation */
+        #result {
+            margin-top: 25px;
+        }
+
+        .result-box {
+            animation: slideUpFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        @keyframes slideUpFade {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Video Player 3D look */
+        video {
+            width: 100%;
+            border-radius: 15px;
+            margin-top: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            border: 2px solid rgba(255,255,255,0.4);
+        }
+
+        /* Download Button */
+        .download-btn {
+            display: inline-block;
+            background: linear-gradient(45deg, #11998e, #38ef7d);
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: bold;
+            margin-top: 20px;
+            width: 100%;
+            box-shadow: 0 5px 15px rgba(56, 239, 125, 0.4);
+            transition: all 0.3s;
+        }
+
+        .download-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(56, 239, 125, 0.6);
+        }
+    </style>
+</head>
+<body>
+
+<div class="glass-card">
+    <h2>Soyfa Instagram<br>Downloader</h2>
+    <p>Paste Reel or Video link below</p>
+    
+    <input type="text" id="insta-url" placeholder="Paste link here... (e.g., https://...)">
+    <button class="btn-3d" onclick="downloadVideo()">GET VIDEO</button>
+    
+    <div id="result"></div>
+</div>
+
+<script>
+    async function downloadVideo() {
+        const url = document.getElementById('insta-url').value;
+        const resultDiv = document.getElementById('result');
+        
+        if (!url) {
+            resultDiv.innerHTML = "<p style='color:#ffcccb; font-weight:bold; text-shadow:1px 1px 2px red;'>⚠️ Pehle link daaliye!</p>";
+            return;
+        }
+
+        // Show animated loader
+        resultDiv.innerHTML = `<div class="loader"></div><p style="color:white; font-weight:600;">Extracting magic... ✨</p>`;
+
+        try {
+            const response = await fetch('http://127.0.0.1:5000/download', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ url: url })
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                try {
+                    let videoUrl = data.data[0].urls[0].url;
+                    
+                    // Display video and download button with smooth animation
+                    resultDiv.innerHTML = `
+                        <div class="result-box">
+                            <p style='color:#a8ff78; font-weight:bold; font-size:18px;'>🎉 Video Ready!</p>
+                            
+                            <video controls autoplay muted>
+                                <source src="${videoUrl}" type="video/mp4">
+                                Browser support nahi kar raha.
+                            </video>
+
+                            <a href="${videoUrl}" target="_blank" class="download-btn">⬇️ Download Video</a>
+                        </div>
+                    `;
+                } catch (err) {
+                    resultDiv.innerHTML = `<p style='color:#ffcccb; font-weight:bold;'>❌ Video nahi nikal paya. (Private video?)</p>`;
+                }
+            } else {
+                resultDiv.innerHTML = `<p style='color:#ffcccb; font-weight:bold;'>❌ Error: ${data.error}</p>`;
+            }
+        } catch (error) {
+            resultDiv.innerHTML = `<p style='color:#ffcccb; font-weight:bold;'>❌ Server on nahi hai. Cmd check karein.</p>`;
+        }
+    }
+</script>
+
+</body>
+</html>
